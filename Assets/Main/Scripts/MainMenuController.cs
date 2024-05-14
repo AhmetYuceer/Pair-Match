@@ -9,8 +9,10 @@ public class MainMenuController : MonoBehaviour
 
     private VisualElement _menuElement;
     private VisualElement _settingsElement;
+    private VisualElement _levelsElement;
 
-    private Button _startButton, _settingsButton, _exitButton, _backButton;
+    private Button _startButton, _settingsButton, _exitButton, _settingsbackButton, _levelBackButton;
+    private Button _lvlButton1;
     private Slider _musicSlider, _sfxSlider;
 
     private void Awake()
@@ -18,6 +20,7 @@ public class MainMenuController : MonoBehaviour
         _uýDocumentMainMenu = GetComponent<UIDocument>();
         _menuElement = _uýDocumentMainMenu.rootVisualElement.Q<VisualElement>("MainMenu");
         _settingsElement = _uýDocumentMainMenu.rootVisualElement.Q<VisualElement>("SettingsMenu");
+        _levelsElement = _uýDocumentMainMenu.rootVisualElement.Q<VisualElement>("LevelMenu");
 
         //Main Menu
         _startButton = _menuElement.Q<Button>("StartButton");
@@ -31,7 +34,7 @@ public class MainMenuController : MonoBehaviour
         //Settings Menu
         _musicSlider = _settingsElement.Q<Slider>("MusicSlider");
         _sfxSlider = _settingsElement.Q<Slider>("SfxSlider");
-        _backButton = _settingsElement.Q<Button>("BackButton");
+        _settingsbackButton = _settingsElement.Q<Button>("BackButton");
 
         _musicSlider.lowValue = 0f;
         _musicSlider.highValue = 1f;
@@ -43,16 +46,36 @@ public class MainMenuController : MonoBehaviour
 
         _musicSlider.RegisterValueChangedCallback(OnMusicSliderValueChanged);
         _sfxSlider.RegisterValueChangedCallback(OnSfxSliderValueChanged);
-        _backButton.clicked += OnBackButton;
+        _settingsbackButton.clicked += OnSettingsBackButton;
+
+        //Level Menu
+        _levelBackButton = _levelsElement.Q<Button>("BackButton");
+        _lvlButton1 = _levelsElement.Q<Button>("lvl1");
+
+        _lvlButton1.clicked += StartGame;
+        _levelBackButton.clicked += OnLevelBackButton;
     }
 
-    void OnMusicSliderValueChanged(ChangeEvent<float> evt)
+
+    private void OnLevelBackButton()
+    {
+        _settingsElement.style.display = DisplayStyle.None;
+        _levelsElement.style.display = DisplayStyle.None;
+        _menuElement.style.display = DisplayStyle.Flex;
+    }
+
+    private void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    private void OnMusicSliderValueChanged(ChangeEvent<float> evt)
     {
         float value = evt.newValue;
         Debug.Log("Slider deðeri: " + value);
         SoundManager.Instance.SetMusicAudioSourceSoundVolume(value);
-    }  
-    void OnSfxSliderValueChanged(ChangeEvent<float> evt)
+    }
+    private void OnSfxSliderValueChanged(ChangeEvent<float> evt)
     {
         float value = evt.newValue;
         SoundManager.Instance.SetSfxAudioSourceSoundVolume(value);
@@ -60,12 +83,15 @@ public class MainMenuController : MonoBehaviour
 
     private void OnStartButton()
     {
-        SceneManager.LoadScene(1);
+        _menuElement.style.display = DisplayStyle.None;
+        _settingsElement.style.display = DisplayStyle.None;
+        _levelsElement.style.display = DisplayStyle.Flex;
     }
 
     private void OnSettingsButton()
     {
         _menuElement.style.display = DisplayStyle.None;
+        _levelsElement.style.display = DisplayStyle.None;
         _settingsElement.style.display = DisplayStyle.Flex;
     }
 
@@ -74,9 +100,10 @@ public class MainMenuController : MonoBehaviour
         Application.Quit();
     }
 
-    private void OnBackButton() 
+    private void OnSettingsBackButton() 
     {
-        _menuElement.style.display = DisplayStyle.Flex;
+        _levelsElement.style.display = DisplayStyle.None;
         _settingsElement.style.display = DisplayStyle.None;
+        _menuElement.style.display = DisplayStyle.Flex;
     }
 }
