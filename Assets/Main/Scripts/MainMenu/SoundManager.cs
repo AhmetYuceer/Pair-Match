@@ -13,7 +13,9 @@ public class SoundManager : MonoBehaviour
     [Header("Audio Clip")]
     [SerializeField] private AudioClip _mainMenuClip;
     [SerializeField] private AudioClip _gameLoopClip;
-    [SerializeField] private AudioClip _sfxClip;
+
+    [SerializeField] private AudioClip _cardOpenClip;
+    [SerializeField] private AudioClip _levelComplateClip;
 
     private void Awake()
     {
@@ -70,11 +72,14 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySfx()
+    public void PlayCardOpenSfx()
     {
-        if (_sfxPlayer != null && !_sfxPlayer.isPlaying)
-        {
-            _sfxPlayer.PlayOneShot(_sfxClip);
-        }
+        if (_sfxPlayer != null)
+            _sfxPlayer.PlayOneShot(_cardOpenClip);
+    }    
+    public void LevelComplateSfx()
+    {
+        if (_sfxPlayer != null)
+            _sfxPlayer.PlayOneShot(_levelComplateClip);
     }
 }

@@ -1,37 +1,42 @@
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card : IClickable
 {
-    private SpriteRenderer _cardSpriteRenderer;
-    private SpriteRenderer _imageRenderer;
+    public SpriteRenderer _cardSpriteRenderer;
 
-    public GameObject CardImage;
+    public GameObject CardImageObject;
     public CardsType CardType;
 
     public Sprite UpCardSprite;
     public Sprite DownCardSprite;
 
+    public bool IsMatch;
+
     private void Start()
     {
         _cardSpriteRenderer = GetComponent<SpriteRenderer>();
-        _imageRenderer = CardImage.GetComponent<SpriteRenderer>();
-        TurnUp();
+        TurnDown();
     }
 
-    public void SetCardImage(Sprite cardImage)
+    public void SetCard(Sprite cardSprite, CardsType cardType)
     {
-        _imageRenderer.sprite = cardImage;
+        if (CardImageObject.TryGetComponent(out SpriteRenderer spriteRenderer))
+        {
+            CardType = cardType;
+            spriteRenderer.sprite = cardSprite;
+        }
     }
 
     public void TurnUp()
     {
+        SoundManager.Instance.PlayCardOpenSfx();
         _cardSpriteRenderer.sprite = UpCardSprite;
-        CardImage.SetActive(true);
+        CardImageObject.SetActive(true);
     }
     
     public void TurnDown()
     {
         _cardSpriteRenderer.sprite = DownCardSprite;
-        CardImage.SetActive(false);
+        CardImageObject.SetActive(false);
     }
 }

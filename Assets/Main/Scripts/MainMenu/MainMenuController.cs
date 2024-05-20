@@ -1,6 +1,5 @@
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using UnityEngine.UIElements;
 
 public class MainMenuController : MonoBehaviour
@@ -12,8 +11,9 @@ public class MainMenuController : MonoBehaviour
     private VisualElement _levelsElement;
 
     private Button _startButton, _settingsButton, _exitButton, _settingsbackButton, _levelBackButton;
-    private Button _lvlButton1;
     private Slider _musicSlider, _sfxSlider;
+
+    private Button _lvlButton1, _lvlButton2, _lvlButton3, _lvlButton4, _lvlButton5, _lvlButton6, _lvlButton7, _lvlButton8, _lvlButton9, _lvlButton10, _lvlButton11, _lvlButton12;
 
     private void Awake()
     {
@@ -22,7 +22,7 @@ public class MainMenuController : MonoBehaviour
         _settingsElement = _uýDocumentMainMenu.rootVisualElement.Q<VisualElement>("SettingsMenu");
         _levelsElement = _uýDocumentMainMenu.rootVisualElement.Q<VisualElement>("LevelMenu");
 
-        //Main Menu
+        #region Main Menu
         _startButton = _menuElement.Q<Button>("StartButton");
         _settingsButton = _menuElement.Q<Button>("SettingsButton");
         _exitButton = _menuElement.Q<Button>("ExitButton");
@@ -30,8 +30,9 @@ public class MainMenuController : MonoBehaviour
         _startButton.clicked += OnStartButton;
         _settingsButton.clicked += OnSettingsButton;
         _exitButton.clicked += OnExitButton;
+        #endregion
 
-        //Settings Menu
+        #region Settings Menu
         _musicSlider = _settingsElement.Q<Slider>("MusicSlider");
         _sfxSlider = _settingsElement.Q<Slider>("SfxSlider");
         _settingsbackButton = _settingsElement.Q<Button>("BackButton");
@@ -47,15 +48,114 @@ public class MainMenuController : MonoBehaviour
         _musicSlider.RegisterValueChangedCallback(OnMusicSliderValueChanged);
         _sfxSlider.RegisterValueChangedCallback(OnSfxSliderValueChanged);
         _settingsbackButton.clicked += OnSettingsBackButton;
+        #endregion
 
-        //Level Menu
+        #region Level Buttons
         _levelBackButton = _levelsElement.Q<Button>("BackButton");
-        _lvlButton1 = _levelsElement.Q<Button>("lvl1");
 
-        _lvlButton1.clicked += StartGame;
+        _lvlButton1 = _levelsElement.Q<Button>("lvl1");
+        _lvlButton2 = _levelsElement.Q<Button>("lvl2");
+        _lvlButton3 = _levelsElement.Q<Button>("lvl3");
+        _lvlButton4 = _levelsElement.Q<Button>("lvl4");
+        _lvlButton5 = _levelsElement.Q<Button>("lvl5");
+        _lvlButton6 = _levelsElement.Q<Button>("lvl6");
+        _lvlButton7 = _levelsElement.Q<Button>("lvl7");
+        _lvlButton8 = _levelsElement.Q<Button>("lvl8");
+        _lvlButton9 = _levelsElement.Q<Button>("lvl9");
+        _lvlButton10 = _levelsElement.Q<Button>("lvl10");
+        _lvlButton11 = _levelsElement.Q<Button>("lvl11");
+        _lvlButton12 = _levelsElement.Q<Button>("lvl12");
+ 
+        _lvlButton1.clicked += OneLevel;
+        _lvlButton2.clicked += TwoLevel;
+        _lvlButton3.clicked += ThreeLevel;
+        _lvlButton4.clicked += FourLevel;
+        _lvlButton5.clicked += FiveLevel;
+        _lvlButton6.clicked += SixLevel;
+        _lvlButton7.clicked += SevenLevel;
+        _lvlButton8.clicked += EightLevel;
+        _lvlButton9.clicked += NineLevel;
+        _lvlButton10.clicked += TenLevel;
+        _lvlButton11.clicked += ElevenLevel;
+        _lvlButton12.clicked += TwelveLevel;
+
         _levelBackButton.clicked += OnLevelBackButton;
+        #endregion
+
+        LevelLockControl();
+
     }
 
+    #region level
+
+    private void LevelLockControl()
+    {
+        List<SOGameSettings> levels = LevelManager.Instance.GetAllLevels();
+
+        Debug.Log(levels.Count);
+
+        for (int i = 0; i < levels.Count; i++)
+        {
+            if (levels[i].Locked)
+            {
+                _levelsElement.Q<VisualElement>($"lvl{i + 1}Lock").visible = true;
+            }
+            else
+            {
+                _levelsElement.Q<VisualElement>($"lvl{i + 1}Lock").visible = false;
+            }
+        }
+    }
+
+    private void OneLevel()
+    {
+        LevelManager.Instance.StartLevel(0);
+    }   
+    private void TwoLevel()
+    {
+        LevelManager.Instance.StartLevel(1);
+    } 
+    private void ThreeLevel()
+    {
+        LevelManager.Instance.StartLevel(2);
+    }   
+    private void FourLevel()
+    {
+        LevelManager.Instance.StartLevel(3);
+    }       
+    private void FiveLevel()
+    {
+        LevelManager.Instance.StartLevel(4);
+    }   
+    private void SixLevel()
+    {
+        LevelManager.Instance.StartLevel(5);
+    } 
+    private void SevenLevel()
+    {
+        LevelManager.Instance.StartLevel(6);
+    }   
+    private void EightLevel()
+    {
+        LevelManager.Instance.StartLevel(7);
+    }
+    private void NineLevel()
+    {
+        LevelManager.Instance.StartLevel(8);
+    } 
+    private void TenLevel()
+    {
+        LevelManager.Instance.StartLevel(9);
+    }   
+    private void ElevenLevel()
+    {
+        LevelManager.Instance.StartLevel(10);
+    }   
+    private void TwelveLevel()
+    {
+        LevelManager.Instance.StartLevel(11);
+    }
+    #endregion
 
     private void OnLevelBackButton()
     {
@@ -63,12 +163,7 @@ public class MainMenuController : MonoBehaviour
         _levelsElement.style.display = DisplayStyle.None;
         _menuElement.style.display = DisplayStyle.Flex;
     }
-
-    private void StartGame()
-    {
-        SceneManager.LoadScene(1);
-    }
-
+ 
     private void OnMusicSliderValueChanged(ChangeEvent<float> evt)
     {
         float value = evt.newValue;

@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Uss/button.uss?fileID=7433441132597879392&amp;guid=df7bd431b89f815498fd1eac9c7aad5a&amp;type=3#button" />
+    <ui:VisualElement name="TimeElement" style="flex-grow: 1; position: absolute;">
+        <ui:GroupBox>
+            <ui:Label text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Time" style="font-size: 40px; color: rgb(255, 255, 255); -unity-font: url(&apos;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=96be5081a761d1c45928ca7c06ebcb26&amp;type=3#NotInter-Regular&apos;); -unity-text-align: upper-left; -unity-font-style: bold; margin-left: 20px; position: absolute;" />
+            <ui:Button text="Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenu" class="button" style="position: absolute; top: 5px; left: 431px; height: 53px; width: 168px; font-size: 27px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; background-color: rgba(188, 188, 188, 0);" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+    <ui:VisualElement name="EndElement" style="flex-grow: 1; position: absolute;">
+        <ui:GroupBox style="width: 350px; height: 500px; background-color: rgba(255, 255, 255, 0); align-items: center; justify-content: flex-start; align-self: flex-start; position: absolute; left: 120px; top: 320px; background-image: url(&apos;project://database/Assets/2D%20Casual%20UI/Sprite/GUI.png?fileID=21300056&amp;guid=1eaee135ce037439d925cee5e41ce026&amp;type=3#GUI_28&apos;);">
+            <ui:Label text="Level Complated" parse-escape-sequences="true" display-tooltip-when-elided="true" style="top: 70px; font-size: 36px; color: rgb(0, 0, 0);" />
+            <ui:Label text="Time : 000" parse-escape-sequences="true" display-tooltip-when-elided="true" name="EndElementTimer" style="top: 117px; font-size: 30px; color: rgb(0, 0, 0);" />
+            <ui:Button text="Next Level" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NextLevel" class="button" style="top: 200px; background-image: url(&apos;project://database/Assets/2D%20Casual%20UI/Sprite/GUI.png?fileID=21300036&amp;guid=1eaee135ce037439d925cee5e41ce026&amp;type=3#GUI_18&apos;); width: 180px; height: 50px; background-color: rgba(188, 188, 188, 0); font-size: 25px; -unity-background-image-tint-color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+            <ui:Button text="Main Menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MainMenu" class="button" style="top: 215px; background-image: url(&apos;project://database/Assets/2D%20Casual%20UI/Sprite/GUI.png?fileID=21300036&amp;guid=1eaee135ce037439d925cee5e41ce026&amp;type=3#GUI_18&apos;); width: 180px; height: 50px; background-color: rgba(188, 188, 188, 0); font-size: 25px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>
