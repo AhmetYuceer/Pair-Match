@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4842925507144649240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8438013902089636673}
+  - component: {fileID: 1494753189169262430}
+  - component: {fileID: -7948947443090571890}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8438013902089636673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842925507144649240}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1494753189169262430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842925507144649240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cfefcf14574c0418d1e8d81dacea04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  _parentTransform: {fileID: 0}
+  _cardPrefab: {fileID: 4233533056716700814, guid: 4ade1b62c619de64fa8aca043f60e50c, type: 3}
+  cardsFeatures:
+  - CardType: 0
+    CardSprite: {fileID: -763118297, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 1
+    CardSprite: {fileID: 1798274754, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 2
+    CardSprite: {fileID: 442441597, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 3
+    CardSprite: {fileID: 2123445493, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 4
+    CardSprite: {fileID: -565918367, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 5
+    CardSprite: {fileID: 1905006509, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 6
+    CardSprite: {fileID: -2106103880, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 7
+    CardSprite: {fileID: -384379186, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 8
+    CardSprite: {fileID: -189349471, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 11
+    CardSprite: {fileID: -1069944855, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 9
+    CardSprite: {fileID: -1574778025, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 12
+    CardSprite: {fileID: 54685254, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 13
+    CardSprite: {fileID: 145031257, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 14
+    CardSprite: {fileID: -1334377744, guid: a5c1e9e2ef4ca484095e9dda10a56f2b, type: 3}
+  - CardType: 15
+    CardSprite: {fileID: 2128332318, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 16
+    CardSprite: {fileID: 1800300941, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 17
+    CardSprite: {fileID: -1720553586, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 18
+    CardSprite: {fileID: 1014211848, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 19
+    CardSprite: {fileID: -1120775719, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 20
+    CardSprite: {fileID: -1548901461, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 21
+    CardSprite: {fileID: -89036632, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 22
+    CardSprite: {fileID: 1062059007, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 23
+    CardSprite: {fileID: 1529368284, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 24
+    CardSprite: {fileID: -898527251, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  - CardType: 25
+    CardSprite: {fileID: 581666388, guid: 3e43833ac11fcc946b5422b7b61eaefa, type: 3}
+  usedCardsFeatures: []
+--- !u!114 &-7948947443090571890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4842925507144649240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 3347327562
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0

@@ -8,4 +8,5 @@
     -unity-background-image-tint-color: rgb(255, 255, 255);
     top: 361px;
     position: absolute;
+    -unity-text-align: upper-center;
 }

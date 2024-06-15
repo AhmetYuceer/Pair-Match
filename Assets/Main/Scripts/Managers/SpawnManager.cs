@@ -1,13 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Mirror;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManager : NetworkBehaviour
 {
     public static SpawnManager Instance;
 
     public Transform _parentTransform;
-    public Stack<Card> Cards = new Stack<Card>();
 
     private const int CARD_TYPE_COUNT = 2;
 
@@ -17,16 +17,18 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] private List<CardsFeatures> usedCardsFeatures = new List<CardsFeatures>();
 
-    private List<Card> _cardList = new List<Card>();
+    public SyncList<Card> CardList = new SyncList<Card>();
 
+ 
     private void Awake()
     {
         if (Instance == null)
-             Instance = this;
+            Instance = this;
         else
             Destroy(gameObject);
     }
-     
+
+    [Server]
     public void SpawnCard(int spawnCount)
     {
         for (int j = 0; j < spawnCount; j++)
@@ -36,25 +38,16 @@ public class SpawnManager : MonoBehaviour
             for (int i = 0; i < CARD_TYPE_COUNT; i++)
             {
                 GameObject cardObject = Instantiate(_cardPrefab, _parentTransform);
+                NetworkServer.Spawn(cardObject.gameObject);
 
-                if (cardObject.TryGetComponent(out Card card))
-                {
-                    card.SetCard(cardFeatures.CardImage, cardFeatures.CardType);
-                    card.name = cardFeatures.CardType.ToString();
-                    _cardList.Add(card);
-                }
+                Card card = cardObject.GetComponent<Card>();
+                CardList.Add(card);
+                card.SetCardSprites(cardFeatures.CardSprite.name, cardFeatures.CardType);
+                card.name = cardFeatures.CardType.ToString();
             }
-
-            _cardList = ShuffleList(_cardList);
-
-            foreach (var item in _cardList)
-                Cards.Push(item);
         }
-    }
-
-    public List<Card> GetCards()
-    {
-        return _cardList;
+        CardList = ShuffleList(CardList);
+        GridManager.Instance.FillGrid(CardList.ToList());
     }
 
     private CardsFeatures GetRandomFeature()
@@ -72,9 +65,10 @@ public class SpawnManager : MonoBehaviour
         return cardFeature;
     }
 
-    private List<T> ShuffleList<T>(List<T> list)
+    private SyncList<T> ShuffleList<T>(SyncList<T> list)
     {
         System.Random random = new System.Random();
-        return list.OrderBy(item => random.Next()).ToList();
+        List<T> shuffledList = list.OrderBy(item => random.Next()).ToList();
+        return new SyncList<T>(shuffledList);
     }
 }

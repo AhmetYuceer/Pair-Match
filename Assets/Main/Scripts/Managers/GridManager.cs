@@ -1,12 +1,12 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using Mirror; 
 
-public class GridManager : MonoBehaviour
+public class GridManager : NetworkBehaviour
 {
     public static GridManager Instance;
 
-    public List<Vector2> _grid;
+    [SyncVar] public List<Vector2> _grid = new List<Vector2>();
 
     private void Awake()
     {
@@ -16,10 +16,15 @@ public class GridManager : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void CreateGrid(int x , int y)
+    [Command(requiresAuthority = false)]
+    public void CMDCreateGrid(int x, int y)
     {
-        _grid = new List<Vector2>();
-
+        RPCCreateGrid(x, y);
+    } 
+    
+    [ClientRpc]
+    public void RPCCreateGrid(int x, int y)
+    {
         for (int i = 0; i < x; i++)
         {
             for (int j = 0; j < y; j++)
@@ -27,15 +32,20 @@ public class GridManager : MonoBehaviour
                 _grid.Add(new Vector2(i * 2, j * 2.5f));
             }
         }
+    } 
+
+    [Command(requiresAuthority = false)] 
+    public void FillGrid(List<Card> cards)
+    {
+        RPCFillGrid(cards);
     }
 
-    public void FillGrid(Stack<Card> cards)
+    [ClientRpc]
+    public void RPCFillGrid(List<Card> cards)
     {
-        Debug.Log(_grid.Count);
-        foreach (var cell in _grid)
+        for (int i = 0; i < _grid.Count; i++)
         {
-            Card card = cards.Pop();
-            card.transform.position = cell;
+            cards[i].transform.position = _grid[i];
         }
     }
 }
