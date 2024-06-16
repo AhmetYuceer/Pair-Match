@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5600083043965067259}
   - component: {fileID: 4137604075313712403}
   - component: {fileID: 9000356051510062660}
+  - component: {fileID: 8172338020390842385}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -76,7 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
   runInBackground: 1
-  headlessStartMode: 2
+  headlessStartMode: 1
   editorAutoStart: 0
   sendRate: 60
   autoStartServerBuild: 0
@@ -109,3 +110,22 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 0
+  LocalHost: 
+  networkDiscovery: {fileID: 0}
+--- !u!114 &8172338020390842385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8011442200913240608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206f1f8ce11fb6f40879ad75cd0ff1e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onReceivedServerResponse:
+    m_PersistentCalls:
+      m_Calls: []
+  m_serverPort: 18418
+  gameServerPortNumber: 7777

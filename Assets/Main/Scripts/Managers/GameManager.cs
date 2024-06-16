@@ -62,7 +62,6 @@ public class GameManager : NetworkBehaviour
             UIManager.Instance.ChangeTurnText("wait for other player");
             IsPlay = false;
         }
-  
 
         if (IsPlay)
         {
@@ -167,7 +166,6 @@ public class GameManager : NetworkBehaviour
         if (players.Count == 1 && players[0] == null)
         {
             players[0].IsMyTurn = true;
-            Debug.Log(players[0].IsMyTurn);
         }
     }
     
